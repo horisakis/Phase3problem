@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_log_in, only: %i[show edit update destroy]
 
   # GET /users
   # GET /users.json

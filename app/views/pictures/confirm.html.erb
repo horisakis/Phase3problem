@@ -1,0 +1,20 @@
+<h2>Confirm</h2>
+<%= image_tag @picture.image %>
+<%= form_with(model: @picture, url: user_pictures_path, local: true) do |form| %>
+  <div class="field">
+    <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
+  </div>
+  <div class="actions">
+    <%= form.submit '登録' %>
+  </div>
+<% end %>
+<%= form_with(model: @picture, url: new_user_picture_path, method: 'get', local: true) do |form| %>
+  <div class="field">
+    <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
+    <%= form.submit '戻る', name: 'back' %>
+  </div>
+<% end %>

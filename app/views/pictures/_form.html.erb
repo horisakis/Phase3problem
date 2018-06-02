@@ -1,4 +1,4 @@
-<%= form_with(model: picture, local: true) do |form| %>
+<%= form_with(model: picture, url: choose_new_or_edit, local: true) do |form| %>
   <% if picture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
@@ -10,15 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+<%= image_tag picture.image %>
   <div class="field">
     <%= form.label :image %>
-    <%= form.text_area :image, id: :picture_image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :picture_user_id %>
+    <%= form.file_field :image, id: :picture_image %>
   </div>
 
   <div class="actions">
