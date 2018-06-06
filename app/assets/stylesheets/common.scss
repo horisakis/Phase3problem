@@ -38,23 +38,9 @@ body > .container {
   float: right;
 }
 
-.content > text {
-  word-break: keep-all;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
 .row-eq-height{
   display: flex;
   flex-wrap: wrap;
-}
-
-.tweet-info {
-  float: left;
 }
 
 .btn-content {
@@ -68,10 +54,7 @@ body > .container {
 .btn-confirm {
   margin-top: 5px;
   float: right;
-}
-
-.form_commit, .form_back {
-  display: inline;
+  display: flex;
 }
 
 .upload_image {

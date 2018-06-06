@@ -10,16 +10,20 @@
       </ul>
     </div>
   <% end %>
-<%= image_tag picture.image %>
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image, id: :picture_image %>
 
-    <%= form.label :message %>
-    <%= form.text_area :message, id: :picture_message %>
+  <div class="row">
+    <div class="tweet_content form-group col-md-offset-4 col-md-4">
+      <div class="field">
+        <%= image_tag(picture.image, class: :upload_image) if picture.image.present? %>
+        <%= form.file_field :image, id: :picture_image %>
+        <%= form.text_area :message, id: :picture_message, :class => "form-control", :placeholder => "本文" %>
+        <%= form.hidden_field :image_cache %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "投稿", :class => "btn-submit btn btn-primary" %>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

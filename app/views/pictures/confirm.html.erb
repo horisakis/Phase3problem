@@ -1,22 +1,38 @@
-<h2>Confirm</h2>
-<%= image_tag @picture.image %>
-<%= @picture.message %>
-<%= form_with(model: @picture, url: user_pictures_path, local: true) do |form| %>
-  <div class="field">
-    <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
-    <%= form.hidden_field :message, value: @picture.message %>
-  </div>
-  <div class="actions">
-    <%= form.submit '登録' %>
-  </div>
-<% end %>
-<%= form_with(model: @picture, url: new_user_picture_path, method: 'get', local: true) do |form| %>
-  <div class="field">
-    <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
-    <%= form.hidden_field :message, value: @picture.message %>
-  </div>
+<div class="container">
+  <h2>以下の内容で送信する</h2>
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="tweet-image">
+            <%= image_tag(@picture.image, class: :upload_image) %>
+          </div>
+          <div class="tweet-content">
+            <%= @picture.message %>
+          </div>
+        </div>
+        <div class="btn-confirm clearfix">
+          <%= form_with(model: @picture, url: user_pictures_path, local: true, class: "form_commit") do |form| %>
+            <span class="field">
+              <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
+              <%= form.hidden_field :message, value: @picture.message %>
+            </span>
+            <span class="actions">
+              <%= form.submit '登録', :class => "btn btn-primary" %>
+            </span>
+          <% end %>
+          <%= form_with(model: @picture, url: new_user_picture_path, method: 'get', local: true, class: "form_back") do |form| %>
+            <span class="field">
+              <%= form.hidden_field :image_cache, value: @picture.image.cache_name %>
+              <%= form.hidden_field :message, value: @picture.message %>
+            </span>
 
-  <div class="actions">
-    <%= form.submit '戻る', name: 'back' %>
+            <span class="actions">
+              <%= form.submit '戻る', name: 'back', :class=> "btn btn-default" %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

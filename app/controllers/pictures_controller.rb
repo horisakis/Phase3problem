@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    # @pictures = Picture.all
+    @user = User.find(params[:user_id])
     @pictures = Picture.where(user_id: params[:user_id])
     @favorites = logged_in? ? current_user.favorites : nil
   end
