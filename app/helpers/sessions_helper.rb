@@ -8,6 +8,7 @@ module SessionsHelper
   end
 
   def redirect_to_log_in
-    redirect_to new_session_path if current_user.nil?
+    return unless current_user.nil? || current_user.id != params[:user_id]
+    redirect_to new_session_path
   end
 end
