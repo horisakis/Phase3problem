@@ -1,0 +1,21 @@
+.top-img {
+  display: table;
+  padding-top: 60px;
+  height: 500px;
+  width: 100%;
+  background-image: url("KAZTP1050224_TP_V.jpg");
+  text-align: center;
+}
+
+.top-text {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 10rem;
+  -webkit-text-stroke: 1px white;
+}
+
+.app-info {
+  margin-top: 10px;
+  margin-bottom: 60px;
+  text-align: center;
+}
