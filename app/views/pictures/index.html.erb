@@ -21,6 +21,15 @@
         <td><%= link_to 'Show', user_picture_path(picture, user_id: picture.user_id) %></td>
         <td><%= link_to 'Edit', edit_user_picture_path(picture, user_id: picture.user_id) %></td>
         <td><%= link_to 'Destroy', user_picture_path(picture, user_id: picture.user_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% unless picture.user_id == current_user.id %>
+          <% favorite = @favorites.find_by(picture_id: picture.id) %>
+          <% if favorite.present? %>
+            <td><%= link_to 'お気に入り解除する', user_favorite_path(id: favorite.id, user_id: current_user.id, picture_id: picture.id, back_path: request.path_info), method: :delete %></td>
+          <% else %>
+            <td><%= link_to 'お気に入りする', user_favorites_path(user_id: current_user.id, picture_id: picture.id, back_path: request.path_info), method: :post %></td>
+          <% end %>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>
