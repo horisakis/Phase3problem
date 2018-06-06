@@ -1,11 +1,13 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: %i[show edit update destroy]
-  before_action :redirect_to_log_in, except: :index
+  before_action -> { redirect_to_log_in(params[:user_id]) }, except: :index
 
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    # @pictures = Picture.all
+    @pictures = Picture.where(user_id: params[:user_id])
+    @favorites = logged_in? ? current_user.favorites : nil
   end
 
   # GET /pictures/1
