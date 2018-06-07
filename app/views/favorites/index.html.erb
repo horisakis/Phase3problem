@@ -1,32 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h2>
+    <%= "#{@user.name}のお気に入り画像" %>
+  </h2>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <div class="row row-eq-height">
+    <% @favorite_pictures.each do |picture| %>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="tweet-content panel-body">
+          <div class="tweet-image">
+            <%= image_tag(picture.image, class: :upload_image) %>
+          </div>
+          <div class="tweet-content">
+            <%= picture.message %>
+          </div>
 
-<h1>Favorites</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Massage</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <% picture  = Picture.find favorite.picture_id %>
-        <td><%= image_tag(picture.image) %></td>
-        <td><%= picture.message %></td>
-        <td><%= favorite.user_id %></td>
-        <td><%= link_to 'Show', user_favorite_path(favorite, user_id: favorite.user_id) %></td>
-        <td><%= link_to 'Edit', edit_user_favorite_path(favorite, user_id: favorite.user_id) %></td>
-        <td><%= link_to 'Destroy', user_favorite_path(favorite, user_id: favorite.user_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        </div>
+        <div class="tweet-footer panel-footer clearfix">
+          <div class="tweet-info">
+            <div class="tweet-time"><%= picture.updated_at.in_time_zone('Tokyo') %></div>
+          </div>
+          <% if logged_in? %>
+          <div class=" btn-content">
+            <% unless picture.user_id == current_user.id %>
+              <% favorite = @favorites.find_by(picture_id: picture.id) %>
+              <% if favorite.present? %>
+                <%= link_to 'お気に入り解除する',
+                            user_favorite_path(id: favorite.id,
+                                               user_id: current_user.id,
+                                               picture_id: picture.id,
+                                               back_path: request.path_info),
+                            method: :delete,
+                            class: 'btn btn-danger'
+                %>
+              <% else %>
+                <%= link_to 'お気に入りする',
+                            favorites_path(user_id: current_user.id,
+                                           picture_id: picture.id),
+                                           method: :post,
+                                           class: 'btn btn-primary' %>
+              <% end %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Favorite', new_user_favorite_path %>
+  </div>
+</div>

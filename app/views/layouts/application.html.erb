@@ -25,9 +25,9 @@
         </div>
         <div id="gnavi" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "一覧", user_pictures_path(user_id: current_user.id) %></li>
-            <li><%= link_to "新規投稿", new_user_picture_path(user_id: current_user.id) %></li>
-            <li><%= link_to "お気に入り", user_favorites_path(user_id: current_user.id) %></li>
+            <li><%= link_to "一覧", logged_in? ? user_pictures_path(user_id: current_user.id) : '#' %></li>
+            <li><%= link_to "新規投稿", logged_in? ? new_user_picture_path(user_id: current_user.id) : '#' %></li>
+            <li><%= link_to "お気に入り", logged_in? ? user_favorites_path(user_id: current_user.id) : '#' %></li>
           </ul>
           <ul class="nav navbar-nav nav-session">
             <% if logged_in? %>
