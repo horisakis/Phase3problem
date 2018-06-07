@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  get '/', to: 'static_pages#index'
+  root 'static_pages#index'
 
   resources :sessions, only: %i[new create destroy]
 
