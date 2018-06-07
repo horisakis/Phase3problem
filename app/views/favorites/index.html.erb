@@ -9,18 +9,18 @@
     <% @favorite_pictures.each do |picture| %>
     <div class="col-md-4">
       <div class="panel panel-default">
-        <div class="tweet-content panel-body">
-          <div class="tweet-image">
+        <div class="picture-content panel-body">
+          <div class="picture-image">
             <%= image_tag(picture.image, class: :upload_image) %>
           </div>
-          <div class="tweet-content">
+          <div class="picture-content">
             <%= picture.message %>
           </div>
 
         </div>
-        <div class="tweet-footer panel-footer clearfix">
-          <div class="tweet-info">
-            <div class="tweet-time"><%= picture.updated_at.in_time_zone('Tokyo') %></div>
+        <div class="picture-footer panel-footer clearfix">
+          <div class="picture-info">
+            <div class="picture-time"><%= picture.updated_at.in_time_zone('Tokyo') %></div>
           </div>
           <% if logged_in? %>
           <div class=" btn-content">

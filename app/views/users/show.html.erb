@@ -1,19 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <% if notice %>
+    <p id="notice" class="alert alert-success"><%= notice %></p>
+  <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <div class="btn-edit">
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
+  </div>
+</div>
