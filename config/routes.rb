@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: %i[new create destroy]
 
-  resources :users do
+  resources :users, except: :index do
     resources :pictures do
       collection do
         post :confirm
