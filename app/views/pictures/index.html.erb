@@ -25,19 +25,20 @@
           </div>
           <% if logged_in? %>
           <div class=" btn-content">
+            <% favorite = @favorites.find_by(picture_id: picture.id) %>
             <% unless picture.user_id == current_user.id %>
-              <% if @favorites.find_by(picture_id: picture.id).present? %>
+              <% if favorite.present? %>
                 <%= link_to 'お気に入り解除する',
                             user_favorite_path(id: favorite.id,
                                                user_id: current_user.id,
-                                               picture_id: picture.id,
-                                               back_path: request.path_info),
+                                               picture_id: picture.id),
                             method: :delete,
                             class: 'btn btn-danger'
                 %>
               <% else %>
                 <%= link_to 'お気に入りする',
-                            favorites_path(tweet_id: tweet.id),
+                            user_favorites_path(current_user,
+                                                picture_id: picture.id),
                             method: :post,
                             class: 'btn btn-primary' %>
               <% end %>
@@ -51,9 +52,10 @@
             </span>
             <span class="btn btn-danger">
               <%= link_to "削除",
-                          user_picture_path(picture, user_id: picture.user_id),
-                          method: :delete,
-                          data: {confirm: "本当に削除してもいいですか？"} %>
+                          user_picture_path(picture,
+                                            user_id: picture.user_id),
+                                            method: :delete,
+                                            data: {confirm: "本当に削除してもいいですか？"} %>
             </span>
             <% end %>
           </div>
