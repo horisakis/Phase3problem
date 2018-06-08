@@ -5,9 +5,9 @@ class PictureMailer < ApplicationMailer
   #
   #   en.picture_mailer.send_new_picture.subject
   #
-  def send_new_picture(picture)
+  def send_new_picture(picture, user)
     @picture = picture
 
-    mail to: "to@example.org", subject: "画像が投稿されれました"
+    mail to: user.email, subject: "画像が投稿されれました"
   end
 end
