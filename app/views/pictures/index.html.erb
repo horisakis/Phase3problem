@@ -21,7 +21,7 @@
         </div>
         <div class="picture-footer panel-footer clearfix">
           <div class="picture-info">
-            <span class="user-name"><%= picture.user.name %></span>
+            <%= link_to picture.user.name, user_pictures_path(picture.user.id), class: 'user-name' %>
             <div class="picture-time"><%= picture.updated_at.in_time_zone('Tokyo') %></div>
           </div>
           <% if logged_in? %>
